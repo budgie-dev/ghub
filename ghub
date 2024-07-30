@@ -1,0 +1,15 @@
+#!/usr/bin/python
+import os
+from sys import argv
+def get_output(command):
+       result = os.popen(command)
+       output = result.read().strip()
+       return output
+
+def main():
+    os.system('git clone https://github.com/' + get_output('cat ~/.config/ghub/username.txt') + '/' + argv[1])
+
+if get_output('cat ~/.config/ghub/username.txt') == "":
+    print('~/.config/ghub/username.txt is empty. Set it to your github username.')
+else:
+    main()
